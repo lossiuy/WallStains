@@ -19,9 +19,14 @@ public class Upload_Controller {
 
 
     public static String resource;
-    public static String resource_send;
+
+    public static String request;
+
     @Value("${upload.dir}")
     private String uploadDir; // 上传文件存储的目录
+
+    @Value("${IP}")
+    private String IP; // 映射ip路径
 
     @CrossOrigin(origins = "*")
     @PostMapping("/upload")
@@ -38,8 +43,10 @@ public class Upload_Controller {
             Files.copy(file.getInputStream(), filePath);
             // 返回文件的访问路径
             String fileUrl = "/uploads/" + fileName;
-            resource ="/src/Master_Photo/"+fileName;
-            resource_send=fileName;
+            resource =IP+"Master_Photo/"+fileName;
+            request=uploadDir+fileName;
+            System.out.println(request);
+            System.out.println(resource);
             return ResponseEntity.ok().body(new UploadResponse(fileUrl));
         } catch (IOException e) {
             e.printStackTrace();

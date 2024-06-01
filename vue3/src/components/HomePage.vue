@@ -20,36 +20,37 @@
       <div class="grid-content ep-bg-purple" />
     </el-col>
   </el-row>
-  <div v-if="showTable">
-    <el-table :data="tableData" :span-method="objectSpanMethod" border style="width: 100%; margin-top: 20px">
-      <el-table-column prop="id" label="图片编号" width="180" />
-      <el-table-column label="原图">
-        <template #default="scope">
-          <el-image style="width: 100%; height: 100%" :src="scope.row.name" :fit="cover"></el-image>
-        </template>
-      </el-table-column>
-      <el-table-column label="标注图">
-        <template #default="scope">
-          <el-image style="width: 100%; height: 100%" :src="scope.row.mark_photo" :fit="cover"></el-image>
-        </template>
-      </el-table-column>
-      <el-table-column prop="num_photo" label="幕墙块编号" />
-      <el-table-column label="幕墙块原图">
-        <template #default="scope">
-          <el-image style="width: 100%; height: 100%" :src="scope.row.pre_photo" :fit="cover"></el-image>
-        </template>
-      </el-table-column>
-      <el-table-column label="幕墙块识别图">
-        <!-- <template #default="scope">
-          <el-image style="width: 100%; height: 100%" :src="scope.row.result_photo" :fit="cover"></el-image>
-        </template> -->
-        <template #default="scope">
-          <el-image v-if="scope.row.result_photo" style="width: 100%; height: 100%" :src="scope.row.result_photo" :fit="cover"></el-image>
-        </template>
-      </el-table-column>
-      <el-table-column prop="area" label="污渍总面积" />
-    </el-table>
+  <div class="demo-image">
+    <div v-if="showTable">
+      <el-table :data="tableData" :span-method="objectSpanMethod" border style="width: 100%; margin-top: 20px">
+        <el-table-column prop="id" label="图片编号" width="180" />
+        <el-table-column label="原图">
+          <template #default="scope">
+            <el-image style="width: 100%; height: 100%" :src="scope.row.name" :fit="cover"></el-image>
+          </template>
+        </el-table-column>
+        <el-table-column label="标注图">
+          <template #default="scope">
+            <el-image style="width: 100%; height: 100%" :src="scope.row.mark_photo" :fit="cover"></el-image>
+          </template>
+        </el-table-column>
+        <el-table-column prop="num_photo" label="幕墙块编号" />
+        <el-table-column label="幕墙块原图">
+          <template #default="scope">
+            <el-image style="width: 100%; height: 100%" :src="scope.row.pre_photo" :fit="cover"></el-image>
+          </template>
+        </el-table-column>
+        <el-table-column label="幕墙块识别图">
+          <template #default="scope">
+            <el-image style="width: 100%; height: 100%" :src="scope.row.result_photo" :fit="cover"></el-image>
+          </template>
+        </el-table-column>
+        <el-table-column prop="area" label="污渍总面积" />
+      </el-table>
+    </div>
   </div>
+
+
 </template>
 
 <style>

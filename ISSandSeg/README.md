@@ -15,20 +15,23 @@
    "res": [
       [
          0.1224522370453246,
-         "./segment/res/warped_image1.jpg",
-         "./segment/res/result1.jpg"
+         "http://localhost:8080/Pri_Block/warped_image1.jpg",
+         "http://localhost:8080/Result_Block/result1.jpg"
+         "http://localhost:8080/Master_Result_Photo/mask_image_20240601180917.jpg"
       ],
       [
          0.26087444976662955,
-         "./segment/res/warped_image2.jpg",
-         "./segment/res/result2.jpg"
+         "http://localhost:8080/Pri_Block/warped_image2.jpg",
+         "http://localhost:8080/Result_Block/result2.jpg"
+         "http://localhost:8080/Master_Result_Photo/mask_image_20240601180917.jpg"
       ]
    ]
 }
 ````
-第一个为污渍面积、第二个为分割块路径、第三个为识别结果路径
+第一个为污渍面积、第二个为分割块映射路径、第三个为识别结果映射路径、第四个为掩码图映射路径
 
 部署可以考虑将yolo识别结果不保存
-污渍识别结果保存在E:/TJU/Soft_ThirdDown/VUE3/vue3/src下，Master_Result_Photo/mask_image.jpg为总览结果，Result_block/result*.jpg为单块污渍识别结果，Pri_block/warped_image*为分割结果（*代表序号）
-如要更改路径，更改predict.py中的路径，将E:/TJU/Soft_ThirdDown/VUE3/vue3/src改到vue3前端文件夹所在的地址
+更改路径，更改predict.py中的路径
+--更改save_dir为创建图片仓库的src文件夹地址即可
+--更改mapping_dir的域名和端口号即可
 ![示例图片](image.png)

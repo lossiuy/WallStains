@@ -7,7 +7,7 @@
             <el-col :span="4">
                 <el-menu default-active="1" class="el-menu-vertical-demo" @select="handleMenuSelect">
                     <el-menu-item index="1">上传图片</el-menu-item>
-                    <!-- <el-menu-item index="2">历史图片</el-menu-item> -->
+                    <el-menu-item index="2">历史图片</el-menu-item>
                 </el-menu>
             </el-col>
             <el-col :span="20">
@@ -26,9 +26,9 @@ export default {
                 case '1':
                     this.$router.push('/');
                     break;
-                // case '2':
-                //     this.$router.push('/other');
-                //     break;
+                case '2':
+                    this.$router.push('/other');
+                    break;
                 default:
                     break;
             }

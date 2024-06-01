@@ -1,10 +1,9 @@
 package com.example.soft.controller;
 
-import com.example.soft.Entity.History_Photo;
-import com.google.gson.GsonBuilder;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Test_Controller {

@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import cv2
 import numpy as np
 import os
+from datetime import datetime
 import ISS
 
 
@@ -103,7 +104,19 @@ def predict(image_path):
 
 
 def get_res(results, image, image_path):
+    # 获取当前时间
+    current_time = datetime.now().strftime("%Y%m%d%H%M%S")
+
     ress = []
+    save_dir = f'E:/TJU/Soft_ThirdDown/VUE3/vue3/src'
+    mapping_dir = f'http://localhost:8080'
+
+    Pri_Block = f'{save_dir}/Pri_block'
+    Result_Block = f'{save_dir}/Result_block'
+    mask_image_DIR = f'{save_dir}/Master_Result_Photo/mask_image_{current_time}.jpg'
+    Pri_Block_mapping_dir = f'{mapping_dir}/Pri_Block'
+    Result_Block_mapping_dir = f'{mapping_dir}/Result_Block'
+    mask_image_mapping_DIR = f'{mapping_dir}/Master_Result_Photo/mask_image_{current_time}.jpg'
     if results is not None:
         num = 1
         colors = []
@@ -160,11 +173,11 @@ def get_res(results, image, image_path):
                 original_image = cv2.imread(image_path)
                 # 应用透视变换
                 warped_image = cv2.warpPerspective(original_image, perspective_matrix, (output_width, output_height))
-                save_dir = f'E:/TJU/Soft_ThirdDown/VUE3/vue3/src'
+
                 os.makedirs(save_dir, exist_ok=True)
-                cv2.imwrite(f'{save_dir}/Pri_block/warped_image{num}.jpg', warped_image)
-                res = float(ISS.process_image(f'{save_dir}/Pri_block/warped_image{num}.jpg', f'{save_dir}/Result_block/result{num}.jpg'))
-                path = [res, f'/src/Pri_block/warped_image{num}.jpg', 'null' if res == -1 else f'/src/Result_block/result{num}.jpg']
+                cv2.imwrite(f'{Pri_Block}/warped_image{num}.jpg', warped_image)
+                res = float(ISS.process_image(f'{Pri_Block}/warped_image{num}.jpg', f'{Result_Block}/result{num}.jpg'))
+                path = [res, f'{Pri_Block_mapping_dir}/warped_image{num}.jpg', 'null' if res == -1 else f'{Result_Block_mapping_dir}/result{num}.jpg', f'{mask_image_mapping_DIR}']
                 ress.append(path)
                 if res == -1:
                     colors.append((0, 255, 0))
@@ -178,5 +191,5 @@ def get_res(results, image, image_path):
 
                 # plt.show()
                 num = num + 1
-        visualize_masks_on_image('E:/TJU/Soft_ThirdDown/VUE3/vue3/src/Master_Result_Photo/mask_image.jpg', image, masks, colors)
+        visualize_masks_on_image(f'{mask_image_DIR}', image, masks, colors)
     return ress

@@ -1,17 +1,25 @@
 package com.example.soft.Entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@NoArgsConstructor
 public class History_Photo {
     private String name;
     private String photo;
     private String num;
-    private String result;
     private String time;
 
-    public History_Photo(String name, String photo, String num, String result, String time) {
+    public History_Photo(String name, String photo, String num,String time) {
         this.name = name;
         this.photo = photo;
         this.num = num;
-        this.result = result;
         this.time = time;
     }
 
@@ -37,14 +45,6 @@ public class History_Photo {
 
     public void setNum(String num) {
         this.num = num;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
     }
 
     public String getTime() {
